@@ -22,28 +22,19 @@ function compareDna(a,b) {
 function useHandlers() {
     const {
         renderArray, 
-        filterArray,
         setFilterArray
     } = useContext(Context)
 
     const handlerNameFilter = () => {
-        if(renderArray === filterArray){
-            let newArr = [...renderArray]
+        let newArr = [...renderArray]
             newArr.sort(compareNames)
             setFilterArray(newArr)
-        } else {
-            setFilterArray(renderArray)
-        }
     }
 
     const handlerIdFilter = () => {
-        if(renderArray === filterArray){
-            let newArr = [...renderArray]
+        let newArr = [...renderArray]
             newArr.sort(compareDna)
             setFilterArray(newArr)
-        } else {
-            setFilterArray(renderArray)
-        }
     }
 
     const handlerButtonBox = (textButton) => {
