@@ -1,25 +1,33 @@
-import logo from './logo.svg';
+import React, {useState, createContext} from 'react';
+import Main from './components/Main';
+import Aside from './components/Aside';
+import data from './assets/datajson.json'
 import './App.css';
 
+
+const arr = data.filter((el, index) => {
+  if(index >= 50) return false 
+  else return el})
+  const Context = createContext();
+
+
 function App() {
+  const [renderArray, setRenderArray] = useState(arr);
+  const [filterArray, setFilterArray] = useState(arr)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Context.Provider value={{
+        renderArray, 
+        setRenderArray,
+        filterArray,
+        setFilterArray
+      }}>
+        <Aside />
+        <Main />
+      </Context.Provider>
     </div>
   );
 }
 
-export default App;
+export { App, Context};
